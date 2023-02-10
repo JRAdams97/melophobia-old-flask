@@ -1,0 +1,13 @@
+.padding-0 {
+  padding: 0 !important;
+}
+
+.col-sm-12.col-md-6 {
+  padding: 1.5em;
+  padding-left: 2em;
+  padding-right: 2em;
+}
+
+.mb-5.row {
+    margin-top: 2em;
+}
