@@ -13,7 +13,8 @@ def list_artists():
         {
             '$lookup': {
                 'from': "genres",
-                'let': {'genres': "$genres"}, 'pipeline': [
+                'let': {'genres': "$genres"},
+                'pipeline': [
                     {'$match': {'$expr': {'$in': ["$_id", "$$genres"]}}},
                     {'$sort': {"name": 1}}
                 ],

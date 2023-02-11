@@ -7,8 +7,11 @@ def create_app():
     _app.config["MONGO_URI"] = 'mongodb+srv://admin:T6PsBgmpzdmQNAxX@melophobia-serverless.4jsys.mongodb.net' \
                                '/melophobia?retryWrites=true&w=majority'
 
-    from .artists import views
-    _app.register_blueprint(views.artists_bp)
+    from .artists.views import artists_bp
+    from .genres.views import genres_bp
+
+    _app.register_blueprint(artists_bp)
+    _app.register_blueprint(genres_bp)
 
     @_app.route('/')
     def index():
