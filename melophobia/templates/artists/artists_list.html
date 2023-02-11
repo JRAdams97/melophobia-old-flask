@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+<html lang="en">
+<head>
+  <title>Artists</title>
+</head>
+<body>
+{% block content %}
+<main class="content">
+  <div class="container-fluid p-0">
+    <div class="mb-3 me-1 row">
+      <h1 class="h3 col-md-11">Artists</h1>
+      <a href="#" class="btn btn-primary col-md-1">Add</a>
+    </div>
+    <div class="row">
+      <div class="col-12 col-xl-12">
+        <div class="card">
+          <table class="table table-striped" id="artistsTable">
+            <thead>
+            <tr>
+              <th style="width:35%;">Name</th>
+              <th style="width:30%">Genre(s)</th>
+              <th style="width:10%">Artist Type</th>
+              <th style="width:5%">Favourite</th>
+              <th style="width:15%">ISNI</th>
+              <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for artist in artists %}
+            <tr>
+              <td>{{ artist.name }}</td>
+              <td>{% for genre in artist.genres %}{{ genre.name }} {% if not loop.last %} / {% endif %}{% endfor %}</td>
+              <td>{{ artist.artist_type }}</td>
+              <td>{{ artist.favourite }}</td>
+              <td>{{ artist.isni }}</td>
+              <td class="table-action">
+                <i class="align-middle text-info" data-feather="edit-2"></i>
+                <i class="align-middle text-danger" data-feather="trash"></i>
+              </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock content %}
+</body>
+</html>
