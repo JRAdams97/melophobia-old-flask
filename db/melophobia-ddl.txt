@@ -1,0 +1,313 @@
+===============================================================================
+ COLLECTIONS
+===============================================================================
+db.createCollection("artists")
+db.createCollection("catalogue_items")
+db.createCollection("genres")
+db.createCollection("labels")
+db.createCollection("releases")
+db.createCollection("tracks")
+
+===============================================================================
+ INDEXES
+===============================================================================
+// We want to drop the following indexes as NULL values are accepted and
+// keeping them will introduce an 'E11000 Duplicate Key' error
+
+db.artists.dropIndex("formation_country.country_name_1")
+db.artists.dropIndex("formation_country.country_code_1")
+db.artists.dropIndex("formation_country.wikidata_id_1")
+db.artists.dropIndex("disband_country.country_name_1")
+db.artists.dropIndex("disband_country.country_code_1")
+db.artists.dropIndex("disband_country.wikidata_id_1")
+
+
+===============================================================================
+ BASE DATA
+===============================================================================
+db.artists.insertMany([
+  {
+    name: "Wilco",
+    genres: [],
+    formation_date: "00/00/1994",
+    formation_area: "Chicago, IL",
+    formation_country: {
+      country_name: "United States",
+      wikidata_id: "Q30",
+      country_code: "US"
+    },
+    favourite: true,
+    artist_type: "Band",
+    releases: [],
+    ipis: [],
+    isni: "0000 0001 1523 0122",
+    amazon_music_id: "B000AQ396G",
+    wikidata_id: "Q637771"
+  },
+  {
+    name: "Tame Impala",
+    genres: [],
+    formation_date: "00/00/2007",
+    formation_area: "Perth, WA",
+    formation_country: {
+      country_name: "Australia",
+      wikidata_id: "Q408",
+      country_code: "AU"
+    },
+    favourite: true,
+    artist_type: "Band",
+    releases: [],
+    ipis: [],
+    isni: "0000 0001 0760 0568",
+    amazon_music_id: "B001FEAEBU",
+    wikidata_id: "Q9619"
+  },
+  {
+    name: "Radiohead",
+    genres: [],
+    formation_date: "21/12/1991",
+    formation_area: "Abingdon, Oxfordshire",
+    formation_country: {
+      country_name: "United Kingdom",
+      wikidata_id: "Q145",
+      country_code: "GB"
+    },
+    favourite: true,
+    artist_type: "Band",
+    releases: [],
+    ipis: [],
+    isni: "0000 0001 1547 5162",
+    amazon_music_id: "B000AP9MOK",
+    wikidata_id: "Q44190"
+  }
+])
+
+db.catalogue_items.insertMany([
+  {
+    catalogue_id: "JAG001",
+    release: null,
+    media: [ "CD" ]
+  },
+  {
+    catalogue_id: "JAG002",
+    release: null,
+    media: [ "CD" ]
+  },
+  {
+    catalogue_id: "JAG003",
+    release: null,
+    media: [ "CD" ]
+  }
+])
+
+db.genres.insertMany([
+  {
+    name: "Rock",
+    origin_year: 1948,
+    parent_genres: [],
+    favourite: false,
+    wikidata_id: "Q11399"
+  },
+  {
+    name: "Alternative Rock",
+    origin_year: 1978,
+    parent_genres: [],
+    favourite: true,
+    wikidata_id: "Q11366"
+  },
+  {
+    name: "Indie Rock",
+    origin_year: 1978,
+    parent_genres: [],
+    favourite: true,
+    wikidata_id: "Q183504"
+  },
+  {
+    name: "Pop",
+    origin_year: 1898,
+    parent_genres: [],
+    favourite: false,
+    wikidata_id: "Q37073"
+  },
+  {
+    name: "Pop Rock",
+    origin_year: 1956,
+    parent_genres: [],
+    favourite: false,
+    wikidata_id: "Q484641"
+  },
+  {
+    name: "Country",
+    origin_year: 1903,
+    parent_genres: [],
+    favourite: false,
+    wikidata_id: "Q83440"
+  },
+  {
+    name: "Alternative Country",
+    origin_year: 1983,
+    parent_genres: [],
+    favourite: true,
+    wikidata_id: "Q438476"
+  },
+  {
+    name: "Americana",
+    origin_year: 1970,
+    parent_genres: [],
+    favourite: true,
+    wikidata_id: "Q2407862"
+  },
+  {
+    name: "Folk",
+    origin_year: 1889,
+    parent_genres: [],
+    favourite: false,
+    wikidata_id: "Q43343"
+  },
+  {
+    name: "Folk Rock",
+    origin_year: 1962,
+    parent_genres: [],
+    favourite: false,
+    wikidata_id: "Q186472"
+  },
+  {
+    name: "Art Rock",
+    origin_year: 1966,
+    parent_genres: [],
+    favourite: false,
+    wikidata_id: "Q217467"
+  },
+  {
+    name: "Electronic",
+    origin_year: 1954,
+    parent_genres: [],
+    favourite: false,
+    wikidata_id: "Q9778"
+  },
+  {
+    name: "Art Pop",
+    origin_year: 1966,
+    parent_genres: [],
+    favourite: false,
+    wikidata_id: "Q25094849"
+  },
+  {
+    name: "Experimental Rock",
+    origin_year: 1964,
+    parent_genres: [],
+    favourite: false,
+    wikidata_id: "Q1641839"
+  },
+  {
+    name: "Britpop",
+    origin_year: 1991,
+    parent_genres: [],
+    favourite: false,
+    wikidata_id: "Q189045"
+  },
+  {
+    name: "Post-Britpop",
+    origin_year: 1993,
+    parent_genres: [],
+    favourite: false,
+    wikidata_id: "Q3231749"
+  },
+  {
+    name: "Synthpop",
+    origin_year: 1972,
+    parent_genres: [],
+    favourite: false,
+    wikidata_id: "Q1298934"
+  },
+  {
+    name: "Psychedelia",
+    origin_year: 1964,
+    parent_genres: [],
+    favourite: false,
+    wikidata_id: "Q846119"
+  },
+  {
+    name: "Neo-Psychedelia",
+    origin_year: 1979,
+    parent_genres: [],
+    favourite: false,
+    wikidata_id: "Q703778"
+  },
+  {
+    name: "Psychedelic Pop",
+    origin_year: 1965,
+    parent_genres: [],
+    favourite: false,
+    wikidata_id: "Q383982"
+  },
+  {
+    name: "Psychedelic Rock",
+    origin_year: 1965,
+    parent_genres: [],
+    favourite: false,
+    wikidata_id: "Q206159"
+  }
+])
+
+db.labels.insertOne({
+  name: "Jagjaguwar",
+  formation_date: "00/00/1996",
+  formation_area: "Bloomington, IN",
+  formation_country: {
+    country_name: "United States",
+    wikidata_id: "Q30",
+    country_code: "US"
+  },
+  favourite: true,
+  label_code: "LC29277",
+  ipis: [],
+  catalogue_items: [],
+  wikidata_id: "Q511652"
+})
+
+db.releases.insertOne({
+  title: "Summerteeth",
+  artists: [],
+  release_date: "09/03/1999",
+  genres: [],
+  languages: [ "English" ],
+  producers: [
+    {
+      name: "<Self-Produced>",
+    }
+  ],
+  total_tracks: null,
+  missing_tracks: null,
+  total_discs: null,
+  missing_discs: null,
+  favourite: true,
+  rym_rating: 3.80,
+  aoty_rank: 4,
+  bea_rank: 8,
+  christgau_rating: "**",
+  hull_rating: "B+",
+  scaruffi_rating: 7,
+  pitchfork_rating: 9.4,
+  art_quality: null,
+  tag_quality: null,
+  format: null,
+  asin: "B00000I5JS",
+  release_status: "Official",
+  release_types: [ "Studio" ],
+  overall_status: null,
+  wikidata_id: "Q1425603"
+})
+
+db.tracks.insertOne({
+  title: "ELT",
+  track_type: "Original",
+  recorded_artists: [],
+  genres: [],
+  composers: ["Jay Bennett", "Jeff Tweedy"]
+  favourite: false,
+  isrc: "USRE19800778",
+  iswc: "T-070.892.234-2"
+})
+
+// Add references to newly created objects using $addToSet and $each
