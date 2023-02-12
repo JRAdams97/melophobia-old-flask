@@ -9,10 +9,12 @@ def create_app():
 
     from .artists.views import artists_bp
     from .genres.views import genres_bp
+    from .labels.views import labels_bp
     from .tracks.views import tracks_bp
 
     _app.register_blueprint(artists_bp)
     _app.register_blueprint(genres_bp)
+    _app.register_blueprint(labels_bp)
     _app.register_blueprint(tracks_bp)
 
     @_app.route('/')
