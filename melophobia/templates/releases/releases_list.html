@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+<html lang="en">
+<head>
+  <title>Releases</title>
+</head>
+<body>
+{% block content %}
+<main class="content">
+  <div class="container-fluid p-0">
+    <h1 class="h3 mb-3">Releases</h1>
+    <div class="row">
+      <div class="col-12 col-xl-12">
+        <div class="card">
+          <table class="table table-striped" id="releasesTable">
+            <thead>
+            <tr>
+              <th style="width:5%;">Release Date</th>
+              <th style="width:20%">Title</th>
+              <th style="width:20%">Artist(s)</th>
+              <th style="width:20%">Genre(s)</th>
+              <th style="width:10%">Type(s)</th>
+              <th style="width:10%">Language(s)</th>
+              <th style="width:5%">Favourite</th>
+              <th style="width:5%">Status</th>
+              <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for release in releases %}
+            <tr>
+              <td>{{ release.release_date }}</td>
+              <td>{{ release.title }}</td>
+              <td>{% for artist in release.artists %}{{ artist.name }} {% if not loop.last %} / {% endif %}{% endfor %}</td>
+              <td>{% for genre in release.genres %}{{ genre.name }} {% if not loop.last %} / {% endif %}{% endfor %}</td>
+              <td>{% for release_type in release.release_types %}{{ release_type }} {% if not loop.last %} / {% endif %}{% endfor %}</td>
+              <td>{% for language in release.languages %}{{ language }} {% if not loop.last %} / {% endif %}{% endfor %}</td>
+              <td>{{ release.favourite }}</td>
+              <td>{{ release.status }}</td>
+              <td class="table-action">
+                <a href="#"><i class="align-middle text-info" data-feather="edit-2"></i></a>
+                <a href="#"><i class="align-middle text-danger" data-feather="trash"></i></a>
+              </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock content %}
+</body>
+</html>
