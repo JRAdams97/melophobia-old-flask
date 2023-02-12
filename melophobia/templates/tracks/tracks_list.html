@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+<html lang="en">
+<head>
+  <title>Tracks</title>
+</head>
+<body>
+{% block content %}
+<main class="content">
+  <div class="container-fluid p-0">
+    <h1 class="h3 mb-3">Tracks</h1>
+    <div class="row">
+      <div class="col-12 col-xl-12">
+        <div class="card">
+          <table class="table table-striped" id="tracksTable">
+            <thead>
+            <tr>
+              <th style="width:25%;">Title</th>
+              <th style="width:15%">Recorded Artist(s)</th>
+              <th style="width:15%">Original Artist(s)</th>
+              <th style="width:20%">Genre(s)</th>
+              <th style="width:10%">ISRC(s)</th>
+              <th style="width:5%">Track Type</th>
+              <th style="width:5%">Favourite</th>
+              <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for track in tracks %}
+            <tr>
+              <td>{{ track.title }}</td>
+              <td>{% for recorded_artist in track.recorded_artists %}{{ recorded_artist.name }} {% if not loop.last %} / {% endif %}{% endfor %}</td>
+              <td>{% for original_artist in track.original_artists %}{{ original_artist.name }} {% if not loop.last %} / {% endif %}{% endfor %}</td>
+              <td>{% for genre in track.genres %}{{ genre.name }} {% if not loop.last %} / {% endif %}{% endfor %}</td>
+              <td>{{ track.isrc }}</td>
+              <td>{{ track.track_type }}</td>
+              <td>{{ track.favourite }}</td>
+              <td class="table-action">
+                <a href="#"><i class="align-middle text-info" data-feather="edit-2"></i></a>
+                <a href="#"><i class="align-middle text-danger" data-feather="trash"></i></a>
+              </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock content %}
+</body>
+</html>
