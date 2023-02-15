@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+<html lang="en">
+<head>
+  <title>Artist</title>
+</head>
+<body>
+{% block content %}
+<main class="content">
+  <div class="container-fluid p-0">
+    <h1 class="h3 mb-3">Artist</h1>
+    <div class="row">
+      <div class="col-md-4 col-xl-3">
+        <div class="card mb-3">
+          <div class="card-body text-center">
+            <img src="/media/artists/{{ artist._id }}.jpg" alt="Artist photo" class="img-fluid rounded-circle mb-3"
+                 width="128" height="128"/>
+            <h5 class="card-title mb-0">{{ artist.name }}</h5>
+            <div class="text-muted mb-0">{{ artist.artist_type }}</div>
+            <small class="text-muted mb-2">{{ artist.formation_date[-4:] }} — {% if artist.disband_date %}{{
+              artist.disband_date[-4:] }}{% endif %}</small>
+          </div>
+          <hr class="my-0"/>
+          <div class="card-body">
+            <h5 class="h6 card-title">Genres</h5>
+            {% for genre in artist.genres %}
+            <a href="#" class="badge bg-primary me-1 my-1">{{ genre.name }}</a>
+            {% endfor %}
+          </div>
+          <hr class="my-0"/>
+          <div class="card-body">
+            <h5 class="h6 card-title">{% if artist.artist_type != "Person" %}Formed{% else %}Birth{% endif %}</h5>
+            <ul class="list-unstyled mb-0">
+              <li class="mb-1"><span data-feather="map-pin" class="feather-sm me-1"></span> {{ artist.formation_area }},
+                {{ artist.formation_country.country_name }}
+              </li>
+              <li class="mb-1"><span data-feather="clock" class="feather-sm me-1"></span> {{ artist.formation_date }}
+              </li>
+            </ul>
+          </div>
+          {% if artist.disband_date %}
+          <hr class="my-0"/>
+          <div class="card-body">
+            <h5 class="h6 card-title">{% if artist.artist_type != "Person" %}Disbanded{% else %}Death{% endif %}</h5>
+            <ul class="list-unstyled mb-0">
+              <li class="mb-1"><span data-feather="map-pin" class="feather-sm me-1"></span> {{ artist.disband_area }},
+                {{ artist.disband_country }}
+              </li>
+              <li class="mb-1"><span data-feather="clock" class="feather-sm me-1"></span> {{ artist.disband_date }}</li>
+            </ul>
+          </div>
+          {% endif %}
+          <hr class="my-0"/>
+          <div class="card-body">
+            <h5 class="h6 card-title">Details</h5>
+            <ul class="list-unstyled mb-0">
+              <li class="mb-1">ISNI: {{ artist.isni }}</li>
+              <li class="mb-1">Amazon Music ID: {{ artist.amazon_music_id }}</li>
+              <li class="mb-1">IPIs: {% for ipi in ipis %}{{ ipi }}{% endfor %}</li>
+              <li class="mb-1">Wikidata ID: {{ artist.wikidata_id }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8 col-xl-9">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title mb-0">Releases</h5>
+          </div>
+          <div class="card-body h-100">
+            <div class="row">
+              {% for release in artist.releases %}
+              <div class="col-12 col-md-6 col-lg-3">
+                <div class="card bg-primary">
+                  <img class="card-img-top smallimg" src="/media/releases/{{ release._id }}.jpg" alt="Album cover"
+                       width="200" height="200"/>
+                  <div class="card-header px-4 pt-4">
+                    <h5 class="card-title mb-0 d-flex justify-content-center">{{ release.title }}</h5>
+                    <div class="badge my-2 d-flex justify-content-center">{{ release.release_date }}</div>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock content %}
+</body>
+</html>

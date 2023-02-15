@@ -21,6 +21,14 @@ db.artists.dropIndex("disband_country.country_name_1")
 db.artists.dropIndex("disband_country.country_code_1")
 db.artists.dropIndex("disband_country.wikidata_id_1")
 
+db.releases.dropIndex("birth_country.country_name_1")
+db.releases.dropIndex("birth_country.country_code_1")
+db.releases.dropIndex("birth_country.wikidata_id_1")
+db.releases.dropIndex("death_country.country_name_1")
+db.releases.dropIndex("death_country.country_code_1")
+db.releases.dropIndex("death_country.wikidata_id_1")
+db.releases.dropIndex("producers.isni_1")
+db.releases.dropIndex("producers.wikidata_id_1")
 
 ===============================================================================
  BASE DATA
@@ -266,38 +274,101 @@ db.labels.insertOne({
   wikidata_id: "Q511652"
 })
 
-db.releases.insertOne({
-  title: "Summerteeth",
-  artists: [],
-  release_date: "09/03/1999",
-  genres: [],
-  languages: [ "English" ],
-  producers: [
-    {
-      name: "<Self-Produced>",
-    }
-  ],
-  total_tracks: null,
-  missing_tracks: null,
-  total_discs: null,
-  missing_discs: null,
-  favourite: true,
-  rym_rating: 3.80,
-  aoty_rank: 4,
-  bea_rank: 8,
-  christgau_rating: "**",
-  hull_rating: "B+",
-  scaruffi_rating: 7,
-  pitchfork_rating: 9.4,
-  art_quality: null,
-  tag_quality: null,
-  format: null,
-  asin: "B00000I5JS",
-  release_status: "Official",
-  release_types: [ "Studio" ],
-  overall_status: null,
-  wikidata_id: "Q1425603"
-})
+db.releases.insertMany([
+  {
+    title: "Summerteeth",
+    artists: [],
+    release_date: "09/03/1999",
+    genres: [],
+    languages: [ "English" ],
+    producers: [
+      {
+        name: "<Self-Produced>",
+      }
+    ],
+    total_tracks: null,
+    missing_tracks: null,
+    total_discs: null,
+    missing_discs: null,
+    favourite: true,
+    rym_rating: 3.80,
+    aoty_rank: 4,
+    bea_rank: 8,
+    christgau_rating: "**",
+    hull_rating: "B+",
+    scaruffi_rating: 7,
+    pitchfork_rating: 9.4,
+    art_quality: null,
+    tag_quality: null,
+    format: null,
+    release_status: "Official",
+    release_types: [ "Studio" ],
+    overall_status: null,
+    wikidata_id: "Q1425603"
+  },
+  {
+    title: "Lonerism",
+    artists: [],
+    release_date: "05/10/2012",
+    genres: [],
+    languages: [ "English" ],
+    producers: [
+      {
+        name: "<Self-Produced>",
+      }
+    ],
+    total_tracks: null,
+    missing_tracks: null,
+    total_discs: null,
+    missing_discs: null,
+    favourite: true,
+    rym_rating: 3.72,
+    aoty_rank: 4,
+    bea_rank: 2,
+    christgau_rating: "**",
+    hull_rating: "**",
+    scaruffi_rating: 6.5,
+    pitchfork_rating: 9.0,
+    art_quality: null,
+    tag_quality: null,
+    format: null,
+    release_status: "Official",
+    release_types: [ "Studio" ],
+    overall_status: null,
+    wikidata_id: "Q3136228"
+  },
+  {
+    title: "Currents",
+    artists: [],
+    release_date: "17/07/2015",
+    genres: [],
+    languages: [ "English" ],
+    producers: [
+      {
+        name: "<Self-Produced>",
+      }
+    ],
+    total_tracks: null,
+    missing_tracks: null,
+    total_discs: null,
+    missing_discs: null,
+    favourite: true,
+    rym_rating: 3.60,
+    aoty_rank: 30,
+    bea_rank: 3,
+    christgau_rating: "**",
+    hull_rating: "",
+    scaruffi_rating: 4.5,
+    pitchfork_rating: 9.3,
+    art_quality: null,
+    tag_quality: null,
+    format: null,
+    release_status: "Official",
+    release_types: [ "Studio" ],
+    overall_status: null,
+    wikidata_id: "Q19824616"
+  }
+])
 
 db.tracks.insertOne({
   title: "ELT",

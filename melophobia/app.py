@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, send_from_directory
 
 
 def create_app():
@@ -22,6 +22,10 @@ def create_app():
     @_app.route('/')
     def index():
         return render_template("index.html")
+
+    @_app.route('/media/<path:filename>')
+    def media_static(filename):
+        return send_from_directory(_app.root_path + '/../media/', filename)
 
     return _app
 
