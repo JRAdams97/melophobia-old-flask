@@ -30,7 +30,7 @@
             {% for artist in artists %}
             <tr>
               <td><a href="{{ url_for('artists.artist_detail', _id=artist._id)}}">{{ artist.name }}</a></td>
-              <td>{% for genre in artist.genres %}{{ genre.name }} {% if not loop.last %} / {% endif %}{% endfor %}</td>
+              <td>{% for genre in artist.genres %}{{ genre.name }}{% if not loop.last %} / {% endif %}{% endfor %}</td>
               <td>{{ artist.artist_type }}</td>
               <td>{{ artist.favourite }}</td>
               <td>{{ artist.isni }}</td>

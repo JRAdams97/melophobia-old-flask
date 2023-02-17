@@ -13,12 +13,17 @@
       <div class="col-md-4 col-xl-3">
         <div class="card mb-3">
           <div class="card-body text-center">
-            <img src="/media/artists/{{ artist._id }}.jpg" alt="Artist photo" class="img-fluid rounded-circle mb-3"
-                 width="128" height="128"/>
+            <object data="/media/artists/fallback.png" alt="No artist photo" class="img-fluid rounded-circle mb-3"
+                    width="128" height="128">
+              <img src="/media/artists/{{ artist._id }}.jpg" alt="Artist photo" class="img-fluid rounded-circle mb-3"
+                   width="128" height="128"/>
+            </object>
             <h5 class="card-title mb-0">{{ artist.name }}</h5>
             <div class="text-muted mb-0">{{ artist.artist_type }}</div>
+            {% if artist.formation_date %}
             <small class="text-muted mb-2">{{ artist.formation_date[-4:] }} — {% if artist.disband_date %}{{
               artist.disband_date[-4:] }}{% endif %}</small>
+            {% endif %}
           </div>
           <hr class="my-0"/>
           <div class="card-body">
@@ -31,11 +36,12 @@
           <div class="card-body">
             <h5 class="h6 card-title">{% if artist.artist_type != "Person" %}Formed{% else %}Birth{% endif %}</h5>
             <ul class="list-unstyled mb-0">
-              <li class="mb-1"><span data-feather="map-pin" class="feather-sm me-1"></span> {{ artist.formation_area }},
-                {{ artist.formation_country.country_name }}
+              <li class="mb-1"><span data-feather="map-pin" class="feather-sm me-1"></span> {% if artist.formation_area %}{{ artist.formation_area }}, {% endif %}{{ artist.formation_country.country_name }}
               </li>
+              {% if artist.formation_date %}
               <li class="mb-1"><span data-feather="clock" class="feather-sm me-1"></span> {{ artist.formation_date }}
               </li>
+              {% endif %}
             </ul>
           </div>
           {% if artist.disband_date %}
@@ -54,10 +60,15 @@
           <div class="card-body">
             <h5 class="h6 card-title">Details</h5>
             <ul class="list-unstyled mb-0">
+              {% if artist.isni %}
               <li class="mb-1">ISNI: {{ artist.isni }}</li>
-              <li class="mb-1">Amazon Music ID: {{ artist.amazon_music_id }}</li>
-              <li class="mb-1">IPIs: {% for ipi in ipis %}{{ ipi }}{% endfor %}</li>
+              {% endif %}
+              {% if artist.ipis %}
+              <li class="mb-1">IPIs: {% for ipi in artist.ipis %}{{ ipi }}{% endfor %}</li>
+              {% endif %}
+              {% if artist.wikidata_id %}
               <li class="mb-1">Wikidata ID: {{ artist.wikidata_id }}</li>
+              {% endif %}
             </ul>
           </div>
         </div>

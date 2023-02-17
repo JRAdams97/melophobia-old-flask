@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+<html lang="en">
+<head>
+  <title>Artist</title>
+</head>
+<body>
+{% block content %}
+<main class="content">
+  <div class="container-fluid p-0">
+    <h1 class="h3 mb-3">Label</h1>
+    <div class="row">
+      <div class="col-md-4 col-xl-3">
+        <div class="card mb-3">
+          <div class="card-body text-center">
+            <img src="/media/labels/{{ label._id }}.svg" alt="Label logo" class="img-fluid mb-3" width="256"
+                 height="256"/>
+            <h5 class="card-title mb-0">{{ label.name }}</h5>
+            <div class="text-muted mb-0">{{ label.label_code }}</div>
+            <small class="text-muted mb-2">{{ label.formation_date[-4:] }} — {% if label.closing_date %}{{
+              label.closing_date[-4:] }}{% endif %}</small>
+          </div>
+          <hr class="my-0"/>
+          <div class="card-body">
+            <h5 class="h6 card-title">Formed</h5>
+            <ul class="list-unstyled mb-0">
+              <li class="mb-1"><span data-feather="map-pin" class="feather-sm me-1"></span> {{ label.formation_area }},
+                {{ label.formation_country.country_name }}
+              </li>
+              <li class="mb-1"><span data-feather="clock" class="feather-sm me-1"></span> {{ label.formation_date }}
+              </li>
+            </ul>
+          </div>
+          {% if label.closing_date %}
+          <hr class="my-0"/>
+          <div class="card-body">
+            <h5 class="h6 card-title">Closed</h5>
+            <ul class="list-unstyled mb-0">
+              <li class="mb-1"><span data-feather="clock" class="feather-sm me-1"></span> {{ label.closing_date }}</li>
+            </ul>
+          </div>
+          {% endif %}
+          <hr class="my-0"/>
+          <div class="card-body">
+            <h5 class="h6 card-title">Details</h5>
+            <ul class="list-unstyled mb-0">
+              <li class="mb-1">IPIs: {% for ipi in label.ipis %}{{ ipi }}{% endfor %}</li>
+              <li class="mb-1">Wikidata ID: {{ label.wikidata_id }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8 col-xl-9">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title mb-0">Catalogue</h5>
+          </div>
+          <div class="card-body h-100">
+            <div class="row">
+              <div class="card">
+                <table class="table table-striped" id="catalogueTable">
+                  <thead>
+                  <tr>
+                    <th style="width:15%">Catalogue ID</th>
+                    <th style="width:10%">Release Date</th>
+                    <th style="width:30%">Title</th>
+                    <th style="width:25%">Artist(s)</th>
+                    <th style="width:15%">Media</th>
+                    <th>Actions</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {% for item in label.catalogue_items %}
+                  <tr>
+                    <td>{{ item.catalogue_id }}</td>
+                    {% if item.release %}
+                    <td>{{ item.release.release_date }}</td>
+                    <td>{{ item.release.title }}</td>
+                    <td>{% for artist in item.release.artists %}{{ artist.name }}{% if not loop.last %} / {% endif %}{% endfor %}</td>
+                    {% else %}
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    {% endif %}
+                    <td>{% for media in item.media %}{{ media }}{% if not loop.last %} / {% endif %}{% endfor %}</td>
+                    <td class="table-action">
+                      <a href="#"><i class="align-middle text-info" data-feather="edit-2"></i></a>
+                      <a href="#"><i class="align-middle text-danger" data-feather="trash"></i></a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock content %}
+</body>
+</html>

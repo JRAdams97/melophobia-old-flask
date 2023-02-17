@@ -61,6 +61,4 @@ def artist_detail(_id):
         }
     ]))
 
-    print(artist)
-
     return render_template('artist_detail.html', artist=artist[0])

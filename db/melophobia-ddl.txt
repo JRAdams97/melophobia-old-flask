@@ -49,7 +49,6 @@ db.artists.insertMany([
     releases: [],
     ipis: [],
     isni: "0000 0001 1523 0122",
-    amazon_music_id: "B000AQ396G",
     wikidata_id: "Q637771"
   },
   {
@@ -67,7 +66,6 @@ db.artists.insertMany([
     releases: [],
     ipis: [],
     isni: "0000 0001 0760 0568",
-    amazon_music_id: "B001FEAEBU",
     wikidata_id: "Q9619"
   },
   {
@@ -85,8 +83,24 @@ db.artists.insertMany([
     releases: [],
     ipis: [],
     isni: "0000 0001 1547 5162",
-    amazon_music_id: "B000AP9MOK",
     wikidata_id: "Q44190"
+  },
+  {
+    name: "Drunk",
+    genres: [],
+    formation_date: null,
+    formation_area: null,
+    formation_country: {
+      country_name: "United States",
+      wikidata_id: "Q30",
+      country_code: "US"
+    },
+    favourite: false,
+    artist_type: "Band",
+    releases: [],
+    ipis: [],
+    isni: "0000 0004 7030 5993",
+    wikidata_id: ""
   }
 ])
 
@@ -367,6 +381,45 @@ db.releases.insertMany([
     release_types: [ "Studio" ],
     overall_status: null,
     wikidata_id: "Q19824616"
+  },
+  {
+    title: "A Derby Spiritual",
+    artists: [],
+    release_date: "01/10/1996",
+    genres: [],
+    languages: [ "English" ],
+    producers: [
+      {
+        name: "Clancy Fraher",
+        birth_country: {
+          country_name: "United States",
+          wikidata_id: "Q30",
+          country_code: "US"
+        }
+        favourite: false,
+        isni: null,
+        wikidata_id: null
+      }
+    ],
+    total_tracks: null,
+    missing_tracks: null,
+    total_discs: null,
+    missing_discs: null,
+    favourite: true,
+    rym_rating: 3.40,
+    aoty_rank: null,
+    bea_rank: null,
+    christgau_rating: null,
+    hull_rating: null,
+    scaruffi_rating: null,
+    pitchfork_rating: null,
+    art_quality: null,
+    tag_quality: null,
+    format: null,
+    release_status: "Official",
+    release_types: [ "Studio" ],
+    overall_status: null,
+    wikidata_id: null
   }
 ])
 

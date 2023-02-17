@@ -28,7 +28,7 @@
             <tbody>
             {% for label in labels %}
             <tr>
-              <td>{{ label.name }}</td>
+              <td><a href="{{ url_for('labels.label_detail', _id=label._id)}}">{{ label.name }}</a></td>
               <td>{{ label.formation_country.country_name }}</td>
               <td>{{ label.formation_date }}</td>
               <td>{{ label.closing_date }}</td>
