@@ -13,11 +13,8 @@
       <div class="col-md-4 col-xl-3">
         <div class="card mb-3">
           <div class="card-body text-center">
-            <object data="/media/artists/fallback.png" alt="No artist photo" class="img-fluid rounded-circle mb-3"
-                    width="128" height="128">
-              <img src="/media/artists/{{ artist._id }}.jpg" alt="Artist photo" class="img-fluid rounded-circle mb-3"
-                   width="128" height="128"/>
-            </object>
+            <img src="/media/artists/{{ artist._id }}.jpg" onerror="this.src='/media/artists/fallback.png'"
+                 alt="Artist photo" class="img-fluid rounded-circle mb-3" width="128" height="128"/>
             <h5 class="card-title mb-0">{{ artist.name }}</h5>
             <div class="text-muted mb-0">{{ artist.artist_type }}</div>
             {% if artist.formation_date %}

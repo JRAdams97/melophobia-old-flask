@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+<html lang="en">
+<head>
+  <title>Release</title>
+</head>
+<body>
+{% block content %}
+<main class="content">
+  <div class="container-fluid p-0">
+    <h1 class="h3 mb-3">Release</h1>
+    <div class="row">
+      <div class="col-md-5 col-xl-5">
+        <div class="card mb-3">
+          <div class="card-body text-center">
+            <img src="/media/releases/{{ release._id }}.jpg" onerror="this.src='/media/releases/fallback.png'"
+                 alt="Release cover" class="img-fluid mb-3" width="800" height="800"/>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-7 col-xl-7">
+        <div class="card">
+          <div class="card-header d-flex justify-content-center pb-0">
+            <h5 class="card-title card-title-m mb-2">{{ release.title }}</h5><br/>
+          </div>
+          {% if release.artists %}
+          <div class="card-body d-flex justify-content-center pt-0 pb-1">
+            <h5 class="card-subtitle card-subtitle-m mb-0">{% for artist in release.artists %}{{ artist.name }}{% if not loop.last %} / {% endif %}{% endfor %}</h5>
+          </div>
+          {% endif %}
+          <div class="card-body d-flex justify-content-center pt-0">
+            <div class="text-muted mb-0">{{ release.release_date }}</div>
+          </div>
+          <div class="card-body pt-0 ps-5 pe-5">
+            <div class="flex-row d-flex">
+              <div class="col-12 col-xl-6">
+                {% if release.genres %}
+                <h5 class="text-muted">Genre(s)</h5>
+                {% for genre in release.genres %}
+                <a href="#" class="badge bg-primary me-1 my-1">{{ genre.name }}</a>
+                {% endfor %}
+                {% endif %}
+              </div>
+              <div class="col-12 col-xl-6">
+                {% if release.release_types %}
+                <h5 class="d-flex justify-content-end text-muted">Release Type(s)</h5>
+                <div class="d-flex justify-content-end">
+                  {% for release_type in release.release_types %}
+                  <a href="#" class="badge bg-secondary me-1 my-1">{{ release_type }}</a>
+                  {% endfor %}
+                </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+          <hr class="my-0"/>
+          <div class="card-body">
+            <h5 class="h6 card-title">Ratings</h5>
+            <div class="row d-flex justify-content-center">
+              <div class="col-12 col-xl-2">
+                {% if release.rym_rating %}
+                <h5 class="card-title mb-1 d-flex justify-content-center">{{ release.rym_rating }}</h5>
+                {% else %}
+                <h5 class="card-title mb-1 d-flex justify-content-center">—</h5>
+                {% endif %}
+                <p class="card-text d-flex justify-content-center">RYM</p>
+              </div>
+              <div class="col-12 col-xl-2">
+                {% if release.aoty_rank %}
+                <h5 class="card-title mb-1 d-flex justify-content-center">{{ release.aoty_rank }}</h5>
+                {% else %}
+                <h5 class="card-title mb-1 d-flex justify-content-center">—</h5>
+                {% endif %}
+                <p class="card-text d-flex justify-content-center">AOTY</p>
+              </div>
+              <div class="col-12 col-xl-2">
+                {% if release.bea_rank %}
+                <h5 class="card-title mb-1 d-flex justify-content-center">{{ release.bea_rank }}</h5>
+                {% else %}
+                <h5 class="card-title mb-1 d-flex justify-content-center">—</h5>
+                {% endif %}
+                <p class="card-text d-flex justify-content-center">BEA</p>
+              </div>
+              <div class="col-12 col-xl-2">
+                {% if release.christgau_rating %}
+                <h5 class="card-title mb-1 d-flex justify-content-center">{{ release.christgau_rating }}</h5>
+                {% else %}
+                <h5 class="card-title mb-1 d-flex justify-content-center">—</h5>
+                {% endif %}
+                <p class="card-text d-flex justify-content-center">Christgau</p>
+              </div>
+              <div class="col-12 col-xl-2">
+                {% if release.scaruffi_rating %}
+                <h5 class="card-title mb-1 d-flex justify-content-center">{{ release.scaruffi_rating }}</h5>
+                {% else %}
+                <h5 class="card-title mb-1 d-flex justify-content-center">—</h5>
+                {% endif %}
+                <p class="card-text d-flex justify-content-center">Scaruffi</p>
+              </div>
+              <div class="col-12 col-xl-2">
+                {% if release.pitchfork_rating %}
+                <h5 class="card-title mb-1 d-flex justify-content-center">{{ release.pitchfork_rating }}</h5>
+                {% else %}
+                <h5 class="card-title mb-1 d-flex justify-content-center">—</h5>
+                {% endif %}
+                <p class="card-text d-flex justify-content-center">Pitchfork</p>
+              </div>
+            </div>
+          </div>
+          <hr class="my-0"/>
+          <div class="card-body">
+            <h5 class="h6 card-title">Details</h5>
+            <div class="row d-flex justify-content-center">
+              <div class="col-12 col-xl-3">
+                {% if release.producers %}
+                {% for producer in release.producers %}
+                <h5 class="card-title mb-1 d-flex justify-content-center">{{ producer.name }}</h5>
+                {% if producer.birth_country %}
+                <h5 class="card-title mb-1 d-flex justify-content-center">({{ producer.birth_country.country_code }})</h5>
+                {% endif %}
+                {% if (release.producers|length > 1) and (not loop.last) %}
+                <div class="mb-3"></div>
+                {% endif %}
+                {% endfor %}
+                {% else %}
+                <h5 class="card-title mb-1 d-flex justify-content-center">—</h5>
+                {% endif %}
+                <p class="card-text d-flex justify-content-center">Producer(s)</p>
+              </div>
+              <div class="col-12 col-xl-3">
+                {% if release.languages %}
+                {% for language in release.languages %}
+                <h5 class="card-title mb-1 d-flex justify-content-center">{{ language }}</h5>
+                {% else %}
+                {% if (release.producers|length > 1) and (not loop.last) %}
+                <h5 class="card-title mb-1 d-flex justify-content-center">—</h5>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+                <p class="card-text d-flex justify-content-center">Language(s)</p>
+              </div>
+              <div class="col-12 col-xl-3">
+                {% if release.release_status %}
+                <h5 class="card-title mb-1 d-flex justify-content-center">{{ release.release_status }}</h5>
+                {% else %}
+                <h5 class="card-title mb-1 d-flex justify-content-center">—</h5>
+                {% endif %}
+                <p class="card-text d-flex justify-content-center">Status</p>
+              </div>
+              <div class="col-12 col-xl-3">
+                {% if release.wikidata_id %}
+                <h5 class="card-title mb-1 d-flex justify-content-center">{{ release.wikidata_id }}</h5>
+                {% else %}
+                <h5 class="card-title mb-1 d-flex justify-content-center">—</h5>
+                {% endif %}
+                <p class="card-text d-flex justify-content-center">Wikidata ID</p>
+              </div>
+            </div>
+          </div>
+          <hr class="my-0"/>
+          <div class="card-body">
+            <h5 class="h6 card-title">Collection Status</h5>
+            <div class="row d-flex justify-content-center">
+              <div class="col-12 col-xl-3">
+                {% if release.format %}
+                <h5 class="card-title mb-1 d-flex justify-content-center">{{ release.format }}</h5>
+                {% else %}
+                <h5 class="card-title mb-1 d-flex justify-content-center">—</h5>
+                {% endif %}
+                <p class="card-text d-flex justify-content-center">Format</p>
+              </div>
+              <div class="col-12 col-xl-3">
+                {% if release.art_quality %}
+                <h5 class="card-title mb-1 d-flex justify-content-center">{{ release.art_quality }}</h5>
+                {% else %}
+                <h5 class="card-title mb-1 d-flex justify-content-center">—</h5>
+                {% endif %}
+                <p class="card-text d-flex justify-content-center">Artwork Quality</p>
+              </div>
+              <div class="col-12 col-xl-3">
+                {% if release.tag_quality %}
+                <h5 class="card-title mb-1 d-flex justify-content-center">{{ release.tag_quality }}</h5>
+                {% else %}
+                <h5 class="card-title mb-1 d-flex justify-content-center">—</h5>
+                {% endif %}
+                <p class="card-text d-flex justify-content-center">Tag Quality</p>
+              </div>
+              <div class="col-12 col-xl-3">
+                {% if release.overall_status %}
+                <h5 class="card-title mb-1 d-flex justify-content-center">{{ release.overall_status }}</h5>
+                {% else %}
+                <h5 class="card-title mb-1 d-flex justify-content-center">—</h5>
+                {% endif %}
+                <p class="card-text d-flex justify-content-center">Overall Status</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock content %}
+</body>
+</html>

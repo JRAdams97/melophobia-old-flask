@@ -309,7 +309,6 @@ db.releases.insertMany([
     aoty_rank: 4,
     bea_rank: 8,
     christgau_rating: "**",
-    hull_rating: "B+",
     scaruffi_rating: 7,
     pitchfork_rating: 9.4,
     art_quality: null,
@@ -340,7 +339,6 @@ db.releases.insertMany([
     aoty_rank: 4,
     bea_rank: 2,
     christgau_rating: "**",
-    hull_rating: "**",
     scaruffi_rating: 6.5,
     pitchfork_rating: 9.0,
     art_quality: null,
@@ -371,7 +369,6 @@ db.releases.insertMany([
     aoty_rank: 30,
     bea_rank: 3,
     christgau_rating: "**",
-    hull_rating: "",
     scaruffi_rating: 4.5,
     pitchfork_rating: 9.3,
     art_quality: null,
@@ -410,7 +407,6 @@ db.releases.insertMany([
     aoty_rank: null,
     bea_rank: null,
     christgau_rating: null,
-    hull_rating: null,
     scaruffi_rating: null,
     pitchfork_rating: null,
     art_quality: null,
@@ -420,6 +416,118 @@ db.releases.insertMany([
     release_types: [ "Studio" ],
     overall_status: null,
     wikidata_id: null
+  },
+  {
+    title: "Summerteeth",
+    artists: [],
+    release_date: "09/03/1999",
+    genres: [],
+    languages: [ "English" ],
+    producers: [
+      {
+        name: "<Self-Produced>",
+      }
+    ],
+    total_tracks: null,
+    missing_tracks: null,
+    total_discs: null,
+    missing_discs: null,
+    favourite: true,
+    rym_rating: 3.80,
+    aoty_rank: 4,
+    bea_rank: 8,
+    christgau_rating: "**",
+    scaruffi_rating: 7,
+    pitchfork_rating: 9.4,
+    art_quality: null,
+    tag_quality: null,
+    format: null,
+    release_status: "Official",
+    release_types: [ "Studio" ],
+    overall_status: null,
+    wikidata_id: "Q1425603"
+  },
+  {
+    title: "Carrie & Lowell",
+    artists: [],
+    release_date: "31/03/2015",
+    genres: [],
+    languages: [ "English" ],
+    producers: [
+      {
+        name: "<Self-Produced>",
+      },
+      {
+        name: "Thomas Bartlett",
+        birth_date: "13/10/1981",
+        birth_area: "Brattleboro, VT",
+        birth_country: {
+          country_name: "United States",
+          wikidata_id: "Q30",
+          country_code: "US"
+        },
+        favourite: false,
+        isni: "0000 0003 8299 5218",
+        wikidata_id: "Q5302435"
+      }
+    ],
+    total_tracks: null,
+    missing_tracks: null,
+    total_discs: null,
+    missing_discs: null,
+    favourite: true,
+    rym_rating: 4.07,
+    aoty_rank: 2,
+    bea_rank: 2,
+    christgau_rating: "*",
+    scaruffi_rating: null,
+    pitchfork_rating: 9.3,
+    art_quality: null,
+    tag_quality: null,
+    format: null,
+    release_status: "Official",
+    release_types: [ "Studio" ],
+    overall_status: null,
+    wikidata_id: "Q18758139"
+  },
+  {
+    title: "We Cool?",
+    artists: [],
+    release_date: "03/03/2015",
+    genres: [],
+    languages: [ "English" ],
+    producers: [
+      {
+        name: "Jack Shirley",
+        birth_area: "Palo Alto, CA",
+        birth_country: {
+          country_name: "United States",
+          wikidata_id: "Q30",
+          country_code: "US"
+        },
+        favourite: false,
+        isni: "0000 0004 0783 784X",
+        wikidata_id: "Q23761848"
+      }
+    ],
+    total_tracks: null,
+    missing_tracks: null,
+    total_discs: null,
+    missing_discs: null,
+    favourite: true,
+    rym_rating: 3.77,
+    aoty_rank: 36,
+    bea_rank: 73,
+    christgau_rating: null,
+    scaruffi_rating: null,
+    pitchfork_rating: null,
+    art_quality: null,
+    tag_quality: null,
+    format: null,
+    release_status: "Official",
+    release_types: [ "Studio" ],
+    overall_status: null,
+    wikidata_id: "Q19627610"
   }
 ])
 

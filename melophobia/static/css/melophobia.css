@@ -9,5 +9,13 @@
 }
 
 .mb-5.row {
-    margin-top: 2em;
+  margin-top: 2em;
+}
+
+.card-title-m {
+  font-size: 1.4rem;
+}
+
+.card-subtitle-m {
+  font-size: 1rem;
 }
