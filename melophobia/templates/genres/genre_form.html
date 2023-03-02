@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+<html lang="en">
+<head>
+  <title>Genre</title>
+</head>
+<body>
+{% block content %}
+<main class="content">
+  <div class="container-fluid p-0">
+    <div class="mb-3 me-1 row">
+      <h1 class="h3 col-md-11">Genre</h1>
+    </div>
+    <div class="row">
+      <div class="col-12 col-xl-6">
+        <div class="card">
+          <div class="card-body">
+            <form method="POST" action={% if genre %}"/genre/{{ genre._id }}"{% else %}"/genre"{% endif %}>
+              <div class="mb-4 mt-3 row">
+                <label class="col-form-label col-sm-3 text-sm-end">Name</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" name="name"
+                         value={% if genre %}"{{ genre.name }}"{% else %}""{% endif %}>
+                </div>
+              </div>
+              <div class="mb-4 row">
+                <label class="col-form-label col-sm-3 text-sm-end">Origin Year</label>
+                <div class="col-sm-2">
+                  <input type="text" class="form-control" name="origin_year"
+                         value={% if genre %}"{{ genre.origin_year }}"{% else %}""{% endif %}>
+                </div>
+              </div>
+              <div class="mb-4 row">
+                <label class="form-label col-sm-3 text-sm-end" for="parent-genre">Parent Genre(s)</label>
+                <div class="col-sm-8">
+                  <select id="parent-genre" class="form-control" name="parent_genres" size="20" multiple>
+                    {% for a_genre in all_genres %}
+                    <option value="{{ a_genre._id }}" {% if a_genre._id in selected_genres %}selected{% endif %}>{{ a_genre.name }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+              <div class="mb-4 row">
+                <label class="col-form-label col-sm-3 text-sm-end pt-sm-0">Favourite</label>
+                <div class="col-sm-8">
+                  <label class="form-check m-0">
+                    <input type="checkbox" class="form-check-input" name="favourite" {% if genre %}{% if genre.favourite %}checked{% endif %}{% endif %}>
+                  </label>
+                </div>
+              </div>
+              <div class="mb-4 row">
+                <label class="col-form-label col-sm-3 text-sm-end">Wikidata ID</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" name="wikidata_id" value={% if genre %}"{{ genre.wikidata_id }}"{% else %}""{% endif %}>
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <div class="col-sm-9 ms-sm-auto">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock content %}
+</body>
+</html>
