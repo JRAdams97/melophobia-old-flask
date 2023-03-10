@@ -33,8 +33,7 @@
           <div class="card-body">
             <h5 class="h6 card-title">{% if artist.artist_type != "Person" %}Formed{% else %}Birth{% endif %}</h5>
             <ul class="list-unstyled mb-0">
-              <li class="mb-1"><span data-feather="map-pin" class="feather-sm me-1"></span> {% if artist.formation_area %}{{ artist.formation_area }}, {% endif %}{{ artist.formation_country.country_name }}
-              </li>
+              <li class="mb-1"><span data-feather="map-pin" class="feather-sm me-1"></span> {% if artist.formation_area %}{{ artist.formation_area }}, {% endif %}{{ artist.formation_country.country_name }}</li>
               {% if artist.formation_date %}
               <li class="mb-1"><span data-feather="clock" class="feather-sm me-1"></span> {{ artist.formation_date }}
               </li>
@@ -46,9 +45,7 @@
           <div class="card-body">
             <h5 class="h6 card-title">{% if artist.artist_type != "Person" %}Disbanded{% else %}Death{% endif %}</h5>
             <ul class="list-unstyled mb-0">
-              <li class="mb-1"><span data-feather="map-pin" class="feather-sm me-1"></span> {{ artist.disband_area }},
-                {{ artist.disband_country }}
-              </li>
+              <li class="mb-1"><span data-feather="map-pin" class="feather-sm me-1"></span> {% if artist.disband_area %}{{ artist.disband_area }}, {% endif %} {{ artist.disband_country.country_name }}</li>
               <li class="mb-1"><span data-feather="clock" class="feather-sm me-1"></span> {{ artist.disband_date }}</li>
             </ul>
           </div>
@@ -61,7 +58,7 @@
               <li class="mb-1">ISNI: {{ artist.isni }}</li>
               {% endif %}
               {% if artist.ipis %}
-              <li class="mb-1">IPIs: {% for ipi in artist.ipis %}{{ ipi }}{% endfor %}</li>
+              <li class="mb-1">IPIs:<br/>{% for ipi in artist.ipis %}{{ ipi }}<br/>{% endfor %}</li>
               {% endif %}
               {% if artist.wikidata_id %}
               <li class="mb-1">Wikidata ID: {{ artist.wikidata_id }}</li>
