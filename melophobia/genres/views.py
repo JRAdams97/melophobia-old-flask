@@ -91,8 +91,6 @@ def genre_update(_id):
         data = {'name': request.form['name'], 'origin_year': request.form['origin_year'], 'favourite': favourite,
                 'wikidata_id': request.form['wikidata_id']}
 
-        print(data)
-
         mongo.db.genres.update_one({'_id': ObjectId(_id)}, {'$set': {'parent_genres': []}})
         mongo.db.genres.update_one({'_id': ObjectId(_id)}, {'$addToSet': {"parent_genres": {'$each': parent_genres}}})
         mongo.db.genres.update_one({'_id': ObjectId(_id)}, {'$set': data})

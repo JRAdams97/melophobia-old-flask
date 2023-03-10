@@ -33,7 +33,9 @@
               <td>{{ genre.origin_year }}</td>
               <td>{{ genre.favourite }}</td>
               <td class="table-action">
-                <a href="{{ url_for('genres.genre_update', _id=genre._id)}}"><i class="align-middle text-info" data-feather="edit-2"></i></a>
+                <a href="{{ url_for('genres.genre_update', _id=genre._id)}}">
+                  <i class="align-middle text-info" data-feather="edit-2"></i>
+                </a>
                 <a href="#"><i class="align-middle text-danger" data-feather="trash"></i></a>
               </td>
             </tr>

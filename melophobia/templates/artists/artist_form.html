@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+<html lang="en">
+<head>
+  <title>Artist</title>
+</head>
+<body>
+{% block content %}
+<main class="content">
+  <div class="container-fluid p-0">
+    <div class="mb-3 me-1 row">
+      <h1 class="h3 col-md-11">Artist</h1>
+    </div>
+    <div class="row">
+      <div class="col-12 col-xl-6">
+        <div class="card">
+          <div class="card-body">
+            <form method="POST" action={% if artist %}"/artist/edit/{{ artist._id }}"{% else %}"/artist"{% endif %}>
+              <div class="mb-4 mt-3 row">
+                <label class="col-form-label col-sm-3 text-sm-end">Name</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" name="name"
+                         value={% if artist %}"{{ artist.name }}"{% else %}""{% endif %}>
+                </div>
+              </div>
+              <div class="mb-4 row">
+                <label class="form-label col-sm-3 text-sm-end" for="genres">Genre(s)</label>
+                <div class="col-sm-8">
+                  <select id="genres" class="form-control" name="genres" size="20" multiple>
+                    {% for genre in all_genres %}
+                    <option value="{{ genre._id }}" {% if genre._id in selected_genres %}selected{% endif %}>{{ genre.name }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+              <div class="mb-4 mt-3 row">
+                <label class="col-form-label col-sm-3 text-sm-end">Formation / Birth Date</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" name="formation_date"
+                         value={% if artist %}"{{ artist.formation_date }}"{% else %}""{% endif %}>
+                </div>
+              </div>
+              <div class="mb-4 mt-3 row">
+                <label class="col-form-label col-sm-3 text-sm-end">Formation / Birth Area</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" name="formation_area"
+                         value={% if artist %}"{{ artist.formation_area }}"{% else %}""{% endif %}>
+                </div>
+              </div>
+              <div class="mb-4 row">
+                <label class="form-label col-sm-3 text-sm-end" for="formation_country">Formation / Birth Country</label>
+                <div class="col-sm-8">
+                  <select id="formation_country" class="form-control" name="formation_country">
+                    {% if not artist %}
+                    <option></option>
+                    {% elif not artist.formation_country %}
+                    <option></option>
+                    {% endif %}
+                    {% for country in countries %}
+                    <option {% if artist %}{% if artist.formation_country and artist.formation_country.country_name == country %}selected{% endif %}{% endif %}>{{ country }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+              <div class="mb-4 mt-3 row">
+                <label class="col-form-label col-sm-3 text-sm-end">Disband / Death Date</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" name="disband_date"
+                         value={% if artist %}"{{ artist.disband_date }}"{% else %}""{% endif %}>
+                </div>
+              </div>
+              <div class="mb-4 mt-3 row">
+                <label class="col-form-label col-sm-3 text-sm-end">Disband / Death Area</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" name="disband_area"
+                         value={% if artist %}"{{ artist.disband_area }}"{% else %}""{% endif %}>
+                </div>
+              </div>
+              <div class="mb-4 row">
+                <label class="form-label col-sm-3 text-sm-end" for="disband_country">Disband / Death Country</label>
+                <div class="col-sm-8">
+                  <select id="disband_country" class="form-control" name="disband_country">
+                    {% if not artist %}
+                    <option></option>
+                    {% elif not artist.disband_country %}
+                    <option></option>
+                    {% endif %}
+                    {% for country in countries %}
+                    <option {% if artist %}{% if artist.disband_country and artist.disband_country.country_name== country %}selected{% endif %}{% endif %}>{{ country }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+              <div class="mb-4 row">
+                <label class="col-form-label col-sm-3 text-sm-end pt-sm-0">Favourite</label>
+                <div class="col-sm-8">
+                  <label class="form-check m-0">
+                    <input type="checkbox" class="form-check-input" name="favourite"
+                           {% if artist %}{% if artist.favourite %}checked{% endif %}{% endif %}>
+                  </label>
+                </div>
+              </div>
+              <div class="mb-4 mt-3 row">
+                <label class="col-form-label col-sm-3 text-sm-end">Artist Type</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" name="artist_type"
+                         value={% if artist %}"{{ artist.artist_type }}"{% else %}""{% endif %}>
+                </div>
+              </div>
+              <div class="mb-4 row">
+                <label class="col-form-label col-sm-3 text-sm-end">IPIs</label>
+                <div class="col-sm-8">
+                  <textarea class="form-control" name="ipis" rows="3">{% if ipis %}{{ ipis }}{% else %}{% endif %}</textarea>
+                </div>
+              </div>
+              <div class="mb-4 mt-3 row">
+                <label class="col-form-label col-sm-3 text-sm-end">ISNI</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" name="isni"
+                         value={% if artist %}"{{ artist.isni }}"{% else %}""{% endif %}>
+                </div>
+              </div>
+              <div class="mb-4 row">
+                <label class="col-form-label col-sm-3 text-sm-end">Wikidata ID</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" name="wikidata_id"
+                         value={% if artist %}"{{ artist.wikidata_id }}"{% else %}""{% endif %}>
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <div class="col-sm-9 ms-sm-auto">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock content %}
+</body>
+</html>

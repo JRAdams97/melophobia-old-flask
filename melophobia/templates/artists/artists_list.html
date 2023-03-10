@@ -10,7 +10,7 @@
   <div class="container-fluid p-0">
     <div class="mb-3 me-1 row">
       <h1 class="h3 col-md-11">Artists</h1>
-      <a href="#" class="btn btn-primary col-md-1">Add</a>
+      <a href="/artist" class="btn btn-primary col-md-1">Add</a>
     </div>
     <div class="row">
       <div class="col-12 col-xl-12">
@@ -35,7 +35,9 @@
               <td>{{ artist.favourite }}</td>
               <td>{{ artist.isni }}</td>
               <td class="table-action">
-                <i class="align-middle text-info" data-feather="edit-2"></i>
+                <a href="{{ url_for('artists.artist_update', _id=artist._id)}}">
+                  <i class="align-middle text-info" data-feather="edit-2"></i>
+                </a>
                 <i class="align-middle text-danger" data-feather="trash"></i>
               </td>
             </tr>
